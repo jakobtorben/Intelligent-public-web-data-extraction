@@ -1,5 +1,6 @@
 import scrapy
 from ..items import AstrazenecaSpiderItem
+import csv
 
 class board_members(scrapy.Spider):
     """
@@ -15,23 +16,15 @@ class board_members(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
+        print('NEW PARSER')
+        print('=============================================================================================')
         page = response.url.split("/")[-2]
         board_members = response.css('h2.bio__header')
-        print('===========================================================================================================================================')
-        for board_member in board_members:
-            name, title = board_member.css('span::text').getall()
+        with open('data.csv', 'w') as f:
+            # TODO fix repetition of names
+            for board_member in board_members:
+                name, title = board_member.css('span::text').getall()
 
-            items = AstrazenecaSpiderItem()
-            items['name'] = name
-            items['title'] = title
+                f.write('{},{}\n'.format(name, title[1:-1]))
 
-            yield items
-        #filename = f'board_members-{page}.html'
-        #with open(filename, 'wb') as f:
-        #    f.write(board_members)
-        #self.log(f'Saved file {filename}')
-
-        #filename = f'board_members-{page}.html'
-        #with open(filename, 'wb') as f:
-        #    f.write(response.body)
-        #self.log(f'Saved file {filename}')
+        f.close()
