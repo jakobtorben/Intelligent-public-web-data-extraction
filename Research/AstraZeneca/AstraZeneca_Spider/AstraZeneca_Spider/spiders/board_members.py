@@ -19,12 +19,13 @@ class board_members(scrapy.Spider):
         print('NEW PARSER')
         print('=============================================================================================')
         page = response.url.split("/")[-2]
+        names = []
         board_members = response.css('h2.bio__header')
         with open('data.csv', 'w') as f:
-            # TODO fix repetition of names
             for board_member in board_members:
                 name, title = board_member.css('span::text').getall()
-
-                f.write('{},{}\n'.format(name, title[1:-1]))
+                if name not in names:
+                    names.append(name)
+                    f.write('{},{}\n'.format(name, title[1:-1]))
 
         f.close()
