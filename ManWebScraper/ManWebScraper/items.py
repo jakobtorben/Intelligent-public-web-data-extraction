@@ -3,9 +3,11 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item, Field
 
 
-class HsbcItem(scrapy.Item):
-    name = scrapy.Field()
-    title = scrapy.Field()
+class Board(Item):
+    company = Field()
+    title = Field()
+    name = Field()
+    

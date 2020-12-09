@@ -2,12 +2,13 @@
 
 # imports
 import scrapy
-from items import HsbcItem
+from ManWebScraper.items import Board
 
-class extract_board(scrapy.Spider):
-    name = 'extract_board'
+class HSBC_board(scrapy.Spider):
+    name = 'HSBC_board'
+
     # define URLs
-    allowed_domains = ['www.hsbc.com/who-we-are/leadership/']
+    allowed_domains = ['www.hsbc.com/']
     start_urls = ['http://hsbc.com/who-we-are/leadership/']
 
     def parse(self, response):
@@ -22,11 +23,11 @@ class extract_board(scrapy.Spider):
             title = person.css("a>div>div>p>span::text").get()
 
             # create item for export
-            items = HsbcItem()
+            item = Board()
 
-            # asign fiealds
-            items['name'] = name
-            items['title'] = title
-
-            # return items
-            yield items
+            # asign fields
+            item['company'] = 'HSBC'
+            item['name'] = name
+            item['title'] = title
+            # Return item
+            yield item
