@@ -1,5 +1,18 @@
 # command to run is: scrapy crawl HSBC_board -o HSBC_board.csv
 
+
+"""
+
+Manual parsing of HSBC.com & archived versions of HSBC.com from web.archive.org
+
+Issues:
+
+- Historical data extraction completely dependent on web.archive.org, if URLs change the whole extraction will break
+- New parser has to be defined every time website html changes
+- Extraction is manual, html has to be inspected to define parse function
+
+"""
+
 # imports
 import scrapy
 from ManWebScraper.items import Board
