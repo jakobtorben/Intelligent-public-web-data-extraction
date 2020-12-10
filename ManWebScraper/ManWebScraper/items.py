@@ -9,5 +9,6 @@ from scrapy import Item, Field
 class Board(Item):
     company = Field()
     title = Field()
+    year = Field()
     name = Field()
     
