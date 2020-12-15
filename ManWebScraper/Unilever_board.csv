@@ -1,11 +1,21 @@
-company,name,title
-Unilever,Paul Polman, Chief Executive Officer
-Unilever,Jean-Marc Huët, Chief Financial Officer
-Unilever,Michael Treschow," Chairman, Unilever N.V. and PLC"
-Unilever,Nils Andersen, Non-Executive Director
-Unilever,Laura Cha, Non-Executive Director
-Unilever,Vittorio Colao, Non-Executive Director
-Unilever,Louise Fresco, Non-Executive Director
-Unilever,Ann Fudge, Non-Executive Director
-Unilever,Judith Hartmann, Non-Executive Director
-Unilever,Mary Ma, Non-Executive Director
+company,date,name,title
+Unilever,2020-12-15,Alan Jope, Chief Executive Officer
+Unilever,2020-12-15,Graeme Pitkethly, Chief Financial Officer
+Unilever,2020-12-15,Nils Andersen, Chair
+Unilever,2020-12-15,Professor Youngme Moon, Vice-Chair and Senior Independent Director
+Unilever,2020-12-15,Conny Braams, Chief Digital & Marketing Officer
+Unilever,2020-12-15,Laura Cha, Non-Executive Director
+Unilever,2020-12-15,Vittorio Colao, Non-Executive Director
+Unilever,2020-12-15,Marc Engel, Chief Supply Chain Officer
+Unilever,2020-12-15,Fabian Garcia," President, North America"
+Unilever,2020-12-15,Hanneke Faber," President, Foods & Refreshment"
+Unilever,2015-08-01,Paul Polman, Chief Executive Officer
+Unilever,2015-08-01,Jean-Marc Huët, Chief Financial Officer
+Unilever,2015-08-01,Michael Treschow," Chairman, Unilever N.V. and PLC"
+Unilever,2015-08-01,Nils Andersen, Non-Executive Director
+Unilever,2015-08-01,Laura Cha, Non-Executive Director
+Unilever,2015-08-01,Vittorio Colao, Non-Executive Director
+Unilever,2015-08-01,Louise Fresco, Non-Executive Director
+Unilever,2015-08-01,Ann Fudge, Non-Executive Director
+Unilever,2015-08-01,Judith Hartmann, Non-Executive Director
+Unilever,2015-08-01,Mary Ma, Non-Executive Director

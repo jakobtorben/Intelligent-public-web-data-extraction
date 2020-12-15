@@ -6,7 +6,7 @@ from ManWebScraper.items import Board
 import datetime
 
 class Unilever_board(scrapy.Spider):
-    name = 'Unilever_board'
+    name = 'Unilever_board_historical'
 
     # define URLs
     allowed_domains = ['www.unilever.com/']
@@ -14,7 +14,13 @@ class Unilever_board(scrapy.Spider):
                   'http://web.archive.org/web/20150801233936/http://www.unilever.com/about/who-we-are/our-leadership/']
 
     def parse(self, response):
-        # define selector that contains all items
+        # Extract date
+        if 'web.archive.org' in response.url:
+            date = response.xpath('//*[@id="wmtb"]/input[3]').attrib['value']
+            date = date[0:4] + '-' + date[4:6] + '-' + date[6:8]
+        else:
+            date = datetime.date.today()
+
         all_people = response.css("article")
 
         # iterate through items
@@ -31,7 +37,7 @@ class Unilever_board(scrapy.Spider):
             # asign fields
             item['company'] = 'Unilever'
             item['title'] = title
-            item['year'] = year
+            item['date'] = date
             item['name'] = name
 
 
