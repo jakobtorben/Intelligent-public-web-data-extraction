@@ -62,3 +62,16 @@ Useful links:
 https://www.youtube.com/watch?v=ALizgnSFTwQ
 
 """
+
+"""
+A bunch of important notes:
+- astrazeneca completely changed their board_page URLs in 2016. So previous designs have preivious URLs.
+You must find a way to automate this
+- the sitemap.xml strategy does not work well, for it only shows you the most RECENT change to a certain webpage.
+I could not find anything about extracting older versions, or detecting if there have been any older versions.
+Therefore the code for XML is useless :(, although you did learn a bit of stuff
+- it does not seem possible to extract older sitemaps from Wayback Machine. Why?
+- update: you can access SOME older sitemaps, for example HSBC. But note that this is in 'plain' text
+whereas the astrazeneca one seems fancier, could hat be the reason why?
+(tried this with unilever, that does seem to be the case! This is a problem!)
+"""
