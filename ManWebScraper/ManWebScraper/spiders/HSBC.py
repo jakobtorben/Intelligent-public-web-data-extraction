@@ -15,7 +15,7 @@ Issues:
 
 # imports
 import scrapy
-from ManWebScraper.items import Board
+from items import Board
 import datetime
 
 class HSBC_board(scrapy.Spider):
@@ -37,6 +37,19 @@ class HSBC_board(scrapy.Spider):
         yield scrapy.Request('https://web.archive.org/web/20141202033024/http://www.hsbc.com/about-hsbc/leadership', self.parse_2013_2014)
         yield scrapy.Request('https://web.archive.org/web/20131121204902/http://www.hsbc.com/about-hsbc/leadership', self.parse_2013_2014)
 
+    def create_board(self, name, title, year):
+
+        # create item for export
+        item = Board()
+
+        # asign fields
+        item['company'] = 'HSBC'
+        item['title'] = title
+        item['year'] = year
+        item['name'] = name
+
+        yield item
+
     # parse the current HSBC board
     def parse_current(self, response):
         # define selector that contains all items
@@ -49,19 +62,11 @@ class HSBC_board(scrapy.Spider):
             # manually parse title
             title = person.css("a>div>div>p>span::text").get()
 
-            # create item for export
-            item = Board()
-
             now = datetime.datetime.now()
-
-            # asign fields
-            item['company'] = 'HSBC'
-            item['title'] = title
-            item['year'] = now.year
-            item['name'] = name
+            year = now.year
 
             # Return item
-            yield item
+            yield self.create_board(name,title,year)
 
     # parse the board from 2015-2018
     def parse_2015_2018(self, response):
@@ -75,23 +80,13 @@ class HSBC_board(scrapy.Spider):
             # manually parse title
             title = person.css("div>p.profile-info::text").get()
 
-            # create item for export
-            item = Board()
-
-            # asign fields
-            item['company'] = 'HSBC'
-            item['title'] = title
-
             # find the year from the crawled URL
             url = response.request.url
             date_info = url.split("/")[4]
             year = date_info[:4]
 
-            item['year'] = year
-            item['name'] = name
-
             # Return item
-            yield item
+            yield self.create_board(name,title,year)
 
     # parse the board from 2013-2014
     def parse_2013_2014(self, response):
@@ -105,20 +100,10 @@ class HSBC_board(scrapy.Spider):
             # manually parse title
             title = person.css("div>p.profile-info.profile-desg.bold::text").get()
 
-            # create item for export
-            item = Board()
-
-            # asign fields
-            item['company'] = 'HSBC'
-            item['title'] = title
-
             # find the year from the crawled URL
             url = response.request.url
             date_info = url.split("/")[4]
             year = date_info[:4]
 
-            item['year'] = year
-            item['name'] = name
-
             # Return item
-            yield item
+            yield self.create_board(name,title,year)
