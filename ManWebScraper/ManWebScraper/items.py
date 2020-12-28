@@ -1,3 +1,4 @@
+  
 # Define here the models for your scraped items
 #
 # See documentation in:
@@ -10,5 +11,5 @@ class Board(Item):
     company = Field()
     title = Field()
     year = Field()
+    date = Field()
     name = Field()
-    

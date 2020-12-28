@@ -1,11 +1,36 @@
-company,name,title
-Unilever,Alan Jope, Chief Executive Officer
-Unilever,Graeme Pitkethly, Chief Financial Officer
-Unilever,Nils Andersen, Chair
-Unilever,Professor Youngme Moon, Vice-Chair and Senior Independent Director
-Unilever,Conny Braams, Chief Digital & Marketing Officer
-Unilever,Laura Cha, Non-Executive Director
-Unilever,Vittorio Colao, Non-Executive Director
-Unilever,Marc Engel, Chief Supply Chain Officer
-Unilever,Fabian Garcia," President, North America"
-Unilever,Hanneke Faber," President, Foods & Refreshment"
+company,date,name,title
+Unilever,2020-12-15,Alan Jope, Chief Executive Officer
+Unilever,2020-12-15,Graeme Pitkethly, Chief Financial Officer
+Unilever,2020-12-15,Nils Andersen, Chair
+Unilever,2020-12-15,Professor Youngme Moon, Vice-Chair and Senior Independent Director
+Unilever,2020-12-15,Conny Braams, Chief Digital & Marketing Officer
+Unilever,2020-12-15,Laura Cha, Non-Executive Director
+Unilever,2020-12-15,Vittorio Colao, Non-Executive Director
+Unilever,2020-12-15,Marc Engel, Chief Supply Chain Officer
+Unilever,2020-12-15,Fabian Garcia," President, North America"
+Unilever,2020-12-15,Hanneke Faber," President, Foods & Refreshment"
+Unilever,2015-08-01,Paul Polman, Chief Executive Officer
+Unilever,2015-08-01,Jean-Marc Huët, Chief Financial Officer
+Unilever,2015-08-01,Michael Treschow," Chairman, Unilever N.V. and PLC"
+Unilever,2015-08-01,Nils Andersen, Non-Executive Director
+Unilever,2015-08-01,Laura Cha, Non-Executive Director
+Unilever,2015-08-01,Vittorio Colao, Non-Executive Director
+Unilever,2015-08-01,Louise Fresco, Non-Executive Director
+Unilever,2015-08-01,Ann Fudge, Non-Executive Director
+Unilever,2015-08-01,Judith Hartmann, Non-Executive Director
+Unilever,2015-08-01,Mary Ma, Non-Executive Director
+Unilever,2013-02-18,Paul Polman,Chief Executive Officer
+Unilever,2013-02-18,Jean-Marc Huët,Chief Financial Officer
+Unilever,2013-02-18,Douglas Anderson Baillie,Chief HR Officer
+Unilever,2013-02-18,Professor Geneviève Berger,Chief Science Officer
+Unilever,2013-02-18,David Blanchard,Chief Category R&D Officer
+Unilever,2013-02-18,Kevin Havelock,"President, Refreshment"
+Unilever,2013-02-18,Alan Jope,"President, North Asia"
+Unilever,2013-02-18,Kees Kruythoff,"President, North America"
+Unilever,2013-02-18,Dave Lewis,"President, Personal Care"
+Unilever,2013-02-18,Harish Manwani,Chief Operating Officer
+Unilever,2013-02-18,Antoine de Saint-Affrique,"President, Foods"
+Unilever,2013-02-18,Pier Luigi Sigismondi,Chief Supply Chain Officer
+Unilever,2013-02-18,Ritva Sotamaa,Chief Legal Officer
+Unilever,2013-02-18,Keith Weed,Chief Marketing and Communication Officer
+Unilever,2013-02-18,Jan Zijderveld,"President, Europe"
