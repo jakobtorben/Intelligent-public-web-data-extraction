@@ -1,16 +1,234 @@
-company,name,title
-HSBC,Mark E Tucker,Group Chairman
-HSBC,Noel Quinn,Group Chief Executive
-HSBC,Ewen Stevenson,Group Chief Financial Officer
-HSBC,"Laura Cha, GBM",Independent non-executive Director
-HSBC,Henri de Castries,Independent non-executive Director
-HSBC,James (Jamie) Forese,Independent non-executive Director
-HSBC,Steven Guggenheimer,Independent non-executive Director
-HSBC,Irene Lee,Independent non-executive Director
-HSBC,José Antonio Meade Kuribreña,Independent non-executive Director
-HSBC,Heidi Miller,Independent non-executive Director
-HSBC,Eileen Murray,Independent non-executive Director
-HSBC,David Nish,Senior independent non-executive Director
-HSBC,Jackson (Jack) Tai,Independent non-executive Director
-HSBC,Pauline van der Meer Mohr,Independent non-executive Director
-HSBC,Aileen Taylor,Group Company Secretary and Chief Governance Officer
+company,name,title,year
+HSBC,Mark E Tucker,Group Chairman,2020
+HSBC,Noel Quinn,Group Chief Executive,2020
+HSBC,Ewen Stevenson,Group Chief Financial Officer,2020
+HSBC,"Laura Cha, GBM",Independent non-executive Director,2020
+HSBC,Henri de Castries,Independent non-executive Director,2020
+HSBC,James (Jamie) Forese,Independent non-executive Director,2020
+HSBC,Steven Guggenheimer,Independent non-executive Director,2020
+HSBC,Irene Lee,Independent non-executive Director,2020
+HSBC,José Antonio Meade Kuribreña,Independent non-executive Director,2020
+HSBC,Heidi Miller,Independent non-executive Director,2020
+HSBC,Eileen Murray,Independent non-executive Director,2020
+HSBC,David Nish,Senior independent non-executive Director,2020
+HSBC,Jackson (Jack) Tai,Independent non-executive Director,2020
+HSBC,Pauline van der Meer Mohr,Independent non-executive Director,2020
+HSBC,Aileen Taylor,Group Company Secretary and Chief Governance Officer,2020
+HSBC,Mark E Tucker,Group Chairman,2018
+HSBC,John M Flint ,Group Chief Executive,2018
+HSBC,Iain Mackay,Group Finance Director,2018
+HSBC,Kathleen Casey,"Independent non-executive Director, member of the Group Audit Committee and the Nomination & Corporate Governance Committee",2018
+HSBC,"Laura Cha, GBM","Independent non-executive Director, member of the Nomination & Corporate Governance Committee and the Financial System Vulnerabilities Committee",2018
+HSBC,Henri de Castries,"Independent non-executive Director, member of the Group Remuneration Committee and the Nomination & Corporate Governance Committee",2018
+HSBC,Lord Evans of Weardale ,"Independent non-executive Director, Chairman of the Financial System Vulnerabilities Committee and member of the Nomination & Corporate Governance Committee",2018
+HSBC,Irene Lee,"Independent non-executive Director, member of the Group Remuneration Committee and the Nomination & Corporate Governance Committee ",2018
+HSBC,Heidi Miller,"Independent non-executive Director, member of the Group Risk Committee and the Nomination & Corporate Governance Committee",2018
+HSBC,Marc Moses,Executive Director and Group Chief Risk Officer,2018
+HSBC,David Nish,"Independent non-executive Director, member of the Group Audit Committee, the Group Remuneration Committee and the Nomination & Corporate Governance Committee",2018
+HSBC,"Jonathan Symonds, CBE","Deputy Group Chairman and Senior independent non-executive Director, Chairman of the Group Audit Committee and member of the Group Risk Committee and the Nomination & Corporate Governance Committee",2018
+HSBC,Jackson (Jack) Tai,"Independent non-executive Director, Chairman of the Group Risk Committee, member of the Financial System Vulnerabilities Committee and the Nomination & Corporate Governance Committee",2018
+HSBC,Pauline van der Meer Mohr,"Independent non-executive Director, Chairman of the Group Remuneration Committee, member of the Group Risk Committee and the Nomination & Corporate Governance Committee",2018
+HSBC,Ben Mathews,Group Company Secretary,2018
+HSBC,Elaine Arden,Group Head of Human Resources,2018
+HSBC,Samir Assaf,"Chief Executive, Global Banking and Markets",2018
+HSBC,Colin Bell,Group Head of Financial Crime Risk,2018
+HSBC,Peter Boyles,"Chief Executive, Global Private Banking",2018
+HSBC,Patrick J Burke,"President and Chief Executive Officer, HSBC USA",2018
+HSBC,Pierre Goad,Group Head of Communications,2018
+HSBC,Pam Kaur,Group Head of Internal Audit,2018
+HSBC,Stuart Levey ,Chief Legal Officer ,2018
+HSBC,Andy Maguire,Group Chief Operating Officer,2018
+HSBC,Paulo Maia,"Chief Executive, Latin America, HSBC and Executive Chairman, HSBC Mexico",2018
+HSBC,Charlie Nunn,"Chief Executive, Retail Banking and Wealth Management",2018
+HSBC,Noel Quinn,"Chief Executive, Global Commercial Banking",2018
+HSBC,Antonio Simoes,"Chief Executive Designate, Global Private Banking",2018
+HSBC,Ian Stuart,"CEO, HSBC UK Bank plc",2018
+HSBC,Peter Wong,"Deputy Chairman and Chief Executive, The Hongkong and Shanghai Banking Corporation Limited",2018
+HSBC,Mark E Tucker,Non-executive Group Chairman and Chairman of the Nomination Committee,2017
+HSBC,Stuart Gulliver,Group Chief Executive,2017
+HSBC,Iain Mackay,Group Finance Director,2017
+HSBC,Phillip Ameen,"Independent non-executive Director, member of the Group Audit Committee ",2017
+HSBC,Kathleen Casey,"Independent non-executive Director, member of the Group Audit Committee and the Financial System Vulnerabilities Committee ",2017
+HSBC,"Laura Cha, GBS","Independent non-executive Director, Chairman of the Philanthropic & Community Investment Oversight Committee, and member of the Nomination Committee and the Conduct & Values Committee",2017
+HSBC,Henri de Castries,"Independent non-executive Director, member of the Group Remuneration Committee",2017
+HSBC,Lord Evans of Weardale ,"Independent non-executive Director, Chairman of the Financial System Vulnerabilities Committee, member of the Conduct & Values Committee and Philanthropic & Community Investment Oversight Committee ",2017
+HSBC,Joachim Faber,"Independent non-executive Director, member of the Group Risk Committee",2017
+HSBC,Irene Lee,Independent non-executive Director,2017
+HSBC,John  Lipsky,"Independent non-executive Director, member of the Group Risk Committee, the Nomination Committee and the Group Remuneration Committee",2017
+HSBC,Heidi Miller,"Independent non-executive Director, member of the Group Risk Committee",2017
+HSBC,Marc Moses,Executive Director and Group Chief Risk Officer,2017
+HSBC,David Nish,"Independent non-executive Director, member of the Group Audit Committee and the Group Remuneration Committee",2017
+HSBC,"Jonathan Symonds, CBE","Senior independent non-executive Director, Chairman of the Group Audit Committee and member of the Conduct & Values Committee",2017
+HSBC,Jackson (Jack) Tai,"Independent non-executive Director, Chairman of the Group Risk Committee and member of the Financial System Vulnerabilities Committee",2017
+HSBC,Pauline van der Meer Mohr,"Independent non-executive Director, Chairman of the Group Remuneration Committee, Chairman of the Conduct & Values Committee and member of the Nomination Committee",2017
+HSBC,Ben Mathews,Group Company Secretary,2017
+HSBC,Elaine Arden,Group Head of Human Resources,2017
+HSBC,Samir Assaf,"Chief Executive, Global Banking and Markets",2017
+HSBC,Colin Bell,Group Head of Financial Crime Risk,2017
+HSBC,Peter Boyles,"Chief Executive, Global Private Banking",2017
+HSBC,Patrick J Burke,"President and Chief Executive Officer, HSBC USA",2017
+HSBC,John Flint ,"Chief Executive, Retail Banking and Wealth Management",2017
+HSBC,Pierre Goad,Group Head of Communications,2017
+HSBC,Pam Kaur,Group Head of Internal Audit,2017
+HSBC,Stuart Levey ,Chief Legal Officer ,2017
+HSBC,Andy Maguire,Group Chief Operating Officer,2017
+HSBC,Paulo Maia,"Chief Executive, Latin America, HSBC and Executive Chairman, HSBC Mexico",2017
+HSBC,Noel Quinn,"Chief Executive, Global Commercial Banking",2017
+HSBC,Antonio Simoes,"Chief Executive Officer, HSBC Bank plc",2017
+HSBC,Peter Wong,"Deputy Chairman and Chief Executive, The Hongkong and Shanghai Banking Corporation Limited",2017
+HSBC,"
+                                                Douglas Flint
+                                            ","Group Chairman, HSBC Holdings plc",2014
+HSBC,"
+                                                Stuart Gulliver
+                                            ",Group Chief Executive,2014
+HSBC,"
+                                                Iain Mackay
+                                            ",Group Finance Director,2014
+HSBC,"
+                                                Kathleen Casey
+                                            ","Independent non-executive Director, member of the Group Audit Committee and the Financial System Vulnerabilities Committee ",2014
+HSBC,"
+                                                Safra Catz
+                                            ",Independent non-executive Director,2014
+HSBC,"
+                                                Laura Cha, GBS
+                                            ","Independent non-executive Director, member of the Nomination Committee and the Conduct & Values Committee ",2014
+HSBC,"
+                                                Sir Jonathan Evans
+                                            ","Independent non-executive Director, Chairman of the Financial System Vulnerabilities Committee, member of the Conduct & Values Committee",2014
+HSBC,"
+                                                Joachim Faber
+                                            ","Independent non-executive Director, Chairman of the Group Risk Committee",2014
+HSBC,"
+                                                Rona Fairhead, CBE
+                                            ","Independent non-executive Director, member of the Financial System Vulnerabilities Committee and Nomination Committee ",2014
+HSBC,"
+                                                Sam Laidlaw
+                                            ","Independent non-executive Director, member of the Group Remuneration Committee and the Nomination Committee",2014
+HSBC,"
+                                                John  Lipsky
+                                            ","Independent non-executive Director, member of the Group Risk Committee, the Nomination Committee and the Group Remuneration Committee",2014
+HSBC,"
+                                                Rachel Lomax
+                                            ","Independent non-executive Director, Chairman of the Conduct & Values Committee, member of the Group Audit Committee and the Group Risk Committee ",2014
+HSBC,"
+                                                Heidi Miller
+                                            ","Independent non-executive Director, member of the Group Risk Committee and the Conduct & Values Committee",2014
+HSBC,"
+                                                Marc Moses
+                                            ",Executive Director and Group Chief Risk Officer,2014
+HSBC,"
+                                                Sir Simon Robertson
+                                            ","Deputy Chairman, senior independent non-executive Director, Chairman of the Group Remuneration Committee and the Nomination Committee, member of the Financial System Vulnerabilities Committee",2014
+HSBC,"
+                                                Jonathan Symonds, CBE
+                                            ","Independent non-executive Director, Chairman of the Group Audit Committee, member of the Conduct & Values Committee",2014
+HSBC,"
+                                                Ben Mathews
+                                            ",Group Company Secretary,2014
+HSBC,Ann Almeida,Group Head of Human Resources and Corporate Sustainability,2014
+HSBC,Samir Assaf,"Chief Executive, Global Banking and Markets",2014
+HSBC,Peter Boyles,"Chief Executive, Global Private Banking",2014
+HSBC,Simon Cooper,"Chief Executive, Global Commercial Banking",2014
+HSBC,John Flint ,"Chief Executive, Retail Banking and Wealth Management",2014
+HSBC,Pam Kaur,Group Head of Internal Audit,2014
+HSBC,Alan Keir,Chief Executive of HSBC Bank plc,2014
+HSBC,Stuart Levey ,Chief Legal Officer ,2014
+HSBC,Antonio Losada,Chief Executive of Latin America and the Caribbean,2014
+HSBC,Sean O’Sullivan,Group Chief Operating Officer,2014
+HSBC,Peter Wong,"Chief Executive, The Hongkong and Shanghai Banking Corporation",2014
+HSBC,Douglas Flint,"Group Chairman, HSBC Holdings plc",2016
+HSBC,Stuart Gulliver,Group Chief Executive,2016
+HSBC,Iain Mackay,Group Finance Director,2016
+HSBC,Phillip Ameen,"Independent non-executive Director, member of the Group Audit Committee ",2016
+HSBC,Kathleen Casey,"Independent non-executive Director, member of the Group Audit Committee and the Financial System Vulnerabilities Committee ",2016
+HSBC,"Laura Cha, GBS","Independent non-executive Director, Chairman of the Philanthropic & Community Investment Oversight Committee, and member of the Nomination Committee and the Conduct & Values Committee",2016
+HSBC,Henri de Castries,Independent non-executive Director,2016
+HSBC,Lord Evans of Weardale ,"Independent non-executive Director, Chairman of the Financial System Vulnerabilities Committee, member of the Conduct & Values Committee and Philanthropic & Community Investment Oversight Committee ",2016
+HSBC,Joachim Faber,"Independent non-executive Director, Chairman of the Group Risk Committee",2016
+HSBC,Sam Laidlaw,"Independent non-executive Director, Chairman of the Group Remuneration Committee and the Nomination Committee",2016
+HSBC,Irene Lee,Independent non-executive Director,2016
+HSBC,John  Lipsky,"Independent non-executive Director, member of the Group Risk Committee, the Nomination Committee and the Group Remuneration Committee",2016
+HSBC,Rachel Lomax,"Senior independent non-executive Director, Chairman of the Conduct & Values Committee, member of the Nomination Committee and the Group Risk Committee",2016
+HSBC,Heidi Miller,"Independent non-executive Director, member of the Group Risk Committee",2016
+HSBC,Marc Moses,Executive Director and Group Chief Risk Officer,2016
+HSBC,David Nish,"Independent non-executive Director, member of the Group Audit Committee",2016
+HSBC,"Jonathan Symonds, CBE","Independent non-executive Director, Chairman of the Group Audit Committee, member of the Conduct & Values Committee",2016
+HSBC,Jackson (Jack) Tai,"Independent non-executive Director, member of the Group Risk Committee and the Financial System Vulnerabilities Committee",2016
+HSBC,Pauline van der Meer Mohr,"Independent non-executive Director, member of the Group Remuneration Committee, the Nomination Committee and the Conduct & Values Committee",2016
+HSBC,Paul Walsh,"Independent non-executive Director, member of the Group Remuneration Committee and the Nomination Committee",2016
+HSBC,Ben Mathews,Group Company Secretary,2016
+HSBC,Samir Assaf,"Chief Executive, Global Banking and Markets",2016
+HSBC,Peter Boyles,"Chief Executive, Global Private Banking",2016
+HSBC,Patrick J Burke,"President and Chief Executive Officer, HSBC USA",2016
+HSBC,John Flint ,"Chief Executive, Retail Banking and Wealth Management",2016
+HSBC,Pierre Goad,Group Head of Employee Insight and Communications,2016
+HSBC,Pam Kaur,Group Head of Internal Audit,2016
+HSBC,Stuart Levey ,Chief Legal Officer ,2016
+HSBC,Andy Maguire,Group Chief Operating Officer,2016
+HSBC,Paulo Maia,"Chief Executive, Latin America, HSBC and Executive Chairman, HSBC Mexico",2016
+HSBC,Noel Quinn,"Chief Executive, Global Commercial Banking",2016
+HSBC,Antonio Simoes,"Chief Executive Officer, HSBC Bank plc",2016
+HSBC,Peter Wong,"Deputy Chairman and Chief Executive, The Hongkong and Shanghai Banking Corporation Limited",2016
+HSBC,Douglas Flint,"Group Chairman, HSBC Holdings plc",2013
+HSBC,Stuart Gulliver,Group Chief Executive,2013
+HSBC,Iain Mackay,Group Finance Director,2013
+HSBC,Safra Catz,Independent non-executive Director,2013
+HSBC,"Laura Cha, GBS","Independent non-executive Director, Chairman of the Corporate Sustainability Committee",2013
+HSBC,"Marvin Cheung, GBS, OBE","Independent non-executive Director, member of the Group Audit Committee",2013
+HSBC,John Coombe,"Independent non-executive Director, Chairman of the Group Audit Committee, member of the Group Risk Committee and Group Remuneration Committee",2013
+HSBC,Sir Jonathan Evans,"Independent non-executive Director, member of the Financial System Vulnerabilities Committee",2013
+HSBC,Joachim Faber,"Independent non-executive Director, Chairman of the Group Risk Committee",2013
+HSBC,"Rona Fairhead, CBE","Independent non-executive Director, Chairman of the Financial System Vulnerabilities Committee, member of the Nomination Committee",2013
+HSBC,Renato Fassbind,"Independent non-executive Director, member of the Group Audit Committee and the Group Remuneration Committee",2013
+HSBC,"James Hughes-Hallett, CMG, SBS","Independent non-executive Director, member of the Nomination Committee and the Corporate Sustainability Committee",2013
+HSBC,Sam Laidlaw,"Independent non-executive Director, member of the Group Remuneration Committee",2013
+HSBC,John  Lipsky,"Independent non-executive Director, member of the Group Risk Committee and Nomination Committee",2013
+HSBC,Rachel Lomax,"Independent non-executive Director, member of the Group Audit Committee and Group Risk Committee",2013
+HSBC,Sir Simon Robertson,"Deputy Chairman, senior independent non-executive Director, Chairman of the Group Remuneration Committee and the Nomination Committee, member of the Financial System Vulnerabilities Committee",2013
+HSBC,Ben Mathews,Group Company Secretary,2013
+HSBC,Ann Almeida,Group Head of Human Resources and Corporate Sustainability,2013
+HSBC,Samir Assaf,"Chief Executive, Global Banking and Markets",2013
+HSBC,Peter Boyles,"Chief Executive, Global Private Banking",2013
+HSBC,Simon Cooper,"Chief Executive, Global Commercial Banking",2013
+HSBC,Irene Dorner,"President and Chief Executive Officer, HSBC USA",2013
+HSBC,John Flint ,"Chief Executive, Retail Banking and Wealth Management",2013
+HSBC,Pam Kaur,Group Head of Internal Audit,2013
+HSBC,Alan Keir,Chief Executive of HSBC Bank plc,2013
+HSBC,Stuart Levey ,Chief Legal Officer ,2013
+HSBC,Antonio Losada,Chief Executive of Latin America and the Caribbean,2013
+HSBC,Marc Moses,Group Chief Risk Officer,2013
+HSBC,Sean O’Sullivan,Group Chief Operating Officer,2013
+HSBC,Brian Robertson,Group Managing Director,2013
+HSBC,Peter Wong,"Chief Executive, The Hongkong and Shanghai Banking Corporation",2013
+HSBC,Douglas Flint,"Group Chairman, HSBC Holdings plc",2015
+HSBC,Stuart Gulliver,Group Chief Executive,2015
+HSBC,Iain Mackay,Group Finance Director,2015
+HSBC,Phillip Ameen,"Independent non-executive Director, member of the Group Audit Committee",2015
+HSBC,Kathleen Casey,"Independent non-executive Director, member of the Group Audit Committee and the Financial System Vulnerabilities Committee ",2015
+HSBC,Safra Catz,Independent non-executive Director,2015
+HSBC,"Laura Cha, GBS","Independent non-executive Director, Chairman of the Philanthropic & Community Investment Oversight Committee, and member of the Nomination Committee and the Conduct & Values Committee",2015
+HSBC,Lord Evans of Weardale ,"Independent non-executive Director, Chairman of the Financial System Vulnerabilities Committee, member of the Conduct & Values Committee and Philanthropic & Community Investment Oversight Committee",2015
+HSBC,Joachim Faber,"Independent non-executive Director, Chairman of the Group Risk Committee",2015
+HSBC,"Rona Fairhead, CBE","Independent non-executive Director, member of the Financial System Vulnerabilities Committee and Nomination Committee",2015
+HSBC,Sam Laidlaw,"Independent non-executive Director, Chairman of the Group Remuneration Committee and the Nomination Committee",2015
+HSBC,Irene Lee,Independent non-executive Director,2015
+HSBC,John  Lipsky,"Independent non-executive Director, member of the Group Risk Committee, the Nomination Committee and the Group Remuneration Committee",2015
+HSBC,Rachel Lomax,"Senior independent non-executive Director, Chairman of the Conduct & Values Committee, member of the Nomination Committee, Group Audit Committee and the Group Risk Committee ",2015
+HSBC,Heidi Miller,"Independent non-executive Director, member of the Group Risk Committee and the Conduct & Values Committee",2015
+HSBC,Marc Moses,Executive Director and Group Chief Risk Officer,2015
+HSBC,Sir Simon Robertson,"Deputy Chairman, member of the Group Remuneration Committee ",2015
+HSBC,"Jonathan Symonds, CBE","Independent non-executive Director, Chairman of the Group Audit Committee, member of the Conduct & Values Committee",2015
+HSBC,Pauline van der Meer Mohr,Independent non-executive Director,2015
+HSBC,Ben Mathews,Group Company Secretary,2015
+HSBC,Samir Assaf,"Chief Executive, Global Banking and Markets",2015
+HSBC,Peter Boyles,"Chief Executive, Global Private Banking",2015
+HSBC,Patrick J Burke,"President and Chief Executive Officer, HSBC USA",2015
+HSBC,Simon Cooper,"Chief Executive, Global Commercial Banking",2015
+HSBC,John Flint ,"Chief Executive, Retail Banking and Wealth Management",2015
+HSBC,Pierre Goad,Group Head of Human Resources,2015
+HSBC,Pam Kaur,Group Head of Internal Audit,2015
+HSBC,Stuart Levey ,Chief Legal Officer ,2015
+HSBC,Andy Maguire,Group Chief Operating Officer,2015
+HSBC,Peter Wong,"Deputy Chairman and Chief Executive, The Hongkong and Shanghai Banking Corporation Limited",2015
