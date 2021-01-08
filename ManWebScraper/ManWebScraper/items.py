@@ -10,4 +10,5 @@ class Board(Item):
     company = Field()
     title = Field()
     name = Field()
+    year = Field()
     
