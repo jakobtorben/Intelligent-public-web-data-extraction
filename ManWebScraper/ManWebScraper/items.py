@@ -1,3 +1,4 @@
+  
 # Define here the models for your scraped items
 #
 # See documentation in:
@@ -9,6 +10,6 @@ from scrapy import Item, Field
 class Board(Item):
     company = Field()
     title = Field()
-    name = Field()
     year = Field()
-    
+    date = Field()
+    name = Field()
