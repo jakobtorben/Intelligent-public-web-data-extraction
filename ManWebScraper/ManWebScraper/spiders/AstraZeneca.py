@@ -34,12 +34,16 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
         #yield scrapy.Request('https://www.astrazeneca.com/sitemap.xml', self.parse_XML)
 
 
-        yield scrapy.Request('https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
-        yield scrapy.Request('https://web.archive.org/web/20160304110534/https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
+        #yield scrapy.Request('https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
+        #yield scrapy.Request('https://web.archive.org/web/20160304110534/https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
 
-        yield scrapy.Request('https://web.archive.org/web/20151015023532/http://www.astrazeneca.com/About-Us/our-board-of-directors', self.parse_prior_2016)
-        yield scrapy.Request('https://web.archive.org/web/20151015023301/http://www.astrazeneca.com/About-Us/astrazeneca-senior-executive-team', self.parse_prior_2016)
+        #yield scrapy.Request('https://web.archive.org/web/20151015023532/http://www.astrazeneca.com/About-Us/our-board-of-directors', self.parse_prior_2016)
+        #yield scrapy.Request('https://web.archive.org/web/20151015023301/http://www.astrazeneca.com/About-Us/astrazeneca-senior-executive-team', self.parse_prior_2016)
 
+        #yield scrapy.Request('https://web.archive.org/web/20120915030408/http://www.astrazeneca.com/About-Us/Board-and-management', self.parse_prior_2016)
+
+        yield scrapy.Request('https://web.archive.org/web/20051028020248/http://www.astrazeneca.com/article/510901.aspx', self.parse_intermediate)
+        #yield scrapy.Request('https://web.archive.org/web/20011212171535/http://www.astrazeneca.com/AboutUs/Board_and_management.htm', self.parse_prior_2002)
 
 
     def parse_XML(self, response):
@@ -91,6 +95,52 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
             item['year'] = self.find_year(url)
             yield item
 
+    def parse_intermediate(self, response):
+        url = response.request.url
+        paragraphs = response.css('p')
+
+        for p in paragraphs:
+            name = p.css('font::text') if not p.css('strong::text').get() else p.css('strong::text')
+            if name.get():
+                item = Board()
+                item['name'] = name.get()
+                item['company'] = 'AstraZeneca'
+
+                title = p
+                print(title)
+                item['title'] = title
+                item['year'] = self.find_year(url)
+                yield item
+
+    def parse_prior_2002(self, response):
+        url = response.request.url
+        tables = response.css('table')
+        cells = tables[17].css('td')
+        for i, cell in enumerate(cells):
+            if i != 0:
+                if i % 2 == 1:
+                    item = Board()
+                    item['company'] = 'AstraZeneca'
+                    name = cell.css('b::text').get()
+                    try:
+                        name = [item.strip(' ') for item in name.split('\n')]
+                        name = ' '.join(name)
+                        item['name'] = name
+                    except Exception as e:
+                        print(e)
+                        item['name'] = 0
+                else:
+                    title = cell.css('font::text').get()
+                    try:
+                        title = [item.strip(' ') for item in title.split('\n')]
+                        title = ' '.join(title)
+                        item['title'] = title
+                    except Exception as e:
+                        print(e)
+                        item['title'] = 0
+                    item['year'] = self.find_year(url)
+
+                    yield item
 """
 Useful links:
 https://www.youtube.com/watch?v=ALizgnSFTwQ
