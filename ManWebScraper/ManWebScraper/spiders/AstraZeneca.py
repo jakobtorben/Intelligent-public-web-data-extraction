@@ -5,9 +5,11 @@ from scrapy.spiders import XMLFeedSpider
 from scrapy.http import HtmlResponse
 from scrapy.http import Response
 from scrapy.selector import Selector
+from datetime import date
 
 """
 To run this, simply use 'scrapy crawl AstraZeneca_board'
+Remember that you need to run this in the correct folder!
 """
 
 class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading XML is best when you inherit XML class
@@ -29,8 +31,16 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
         This method seems to be native to scrapy --> it allows you to set up a start sequence!
         If unspecified, I believe scrapy will look for 'parse' method
         """
-        yield scrapy.Request('https://www.astrazeneca.com/sitemap.xml', self.parse_XML)
-        yield scrapy.Request('https://www.astrazeneca.com/our-company/leadership.html',self.parse)
+        #yield scrapy.Request('https://www.astrazeneca.com/sitemap.xml', self.parse_XML)
+
+
+        yield scrapy.Request('https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
+        yield scrapy.Request('https://web.archive.org/web/20160304110534/https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
+
+        yield scrapy.Request('https://web.archive.org/web/20151015023532/http://www.astrazeneca.com/About-Us/our-board-of-directors', self.parse_prior_2016)
+        yield scrapy.Request('https://web.archive.org/web/20151015023301/http://www.astrazeneca.com/About-Us/astrazeneca-senior-executive-team', self.parse_prior_2016)
+
+
 
     def parse_XML(self, response):
         page = Selector(response) # this is useless, for some reason can't read the Xpath??
@@ -43,7 +53,16 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
 
         yield response
 
-    def parse(self, response):
+    def find_year(self, url):
+        if 'web.archive' in url:
+            year = url.split('https://web.archive.org/web/')[1][:4]
+            return year
+        else:
+            return date.today().year
+
+    def parse_current(self, response):
+
+        url = response.request.url # this saves the url
 
         all_people = response.css('h2.bio__header')
 
@@ -52,10 +71,25 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
             item = Board()
             item['company'] = 'AstraZeneca'
             item['name'] = name
-            item['title'] = title[1:-1]
+            # strip necessary to remove white space and new line chars
+            item['title'] = title[1:-1].strip(' ').strip('\n')
+            item['year'] = self.find_year(url)
             print(name, title)
             yield item
 
+    def parse_prior_2016(self, response):
+        url = response.request.url
+        all_people = response.css('dl')
+        for person in all_people:
+            name = person.css('dt::text').getall()
+            title = person.css('dd.description::text').getall()[0]
+
+            item = Board()
+            item['company'] = 'AstraZeneca'
+            item['name'] = name
+            item['title'] = title
+            item['year'] = self.find_year(url)
+            yield item
 
 """
 Useful links:
