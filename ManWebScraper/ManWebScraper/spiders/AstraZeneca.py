@@ -64,6 +64,20 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
         else:
             return date.today().year
 
+
+    def create_board(self, name, title, year):
+
+        # create item for export
+        item = Board()
+
+        # asign fields
+        item['company'] = 'AstraZeneca'
+        item['title'] = title
+        item['year'] = year
+        item['name'] = name
+
+        yield item
+
     def parse_current(self, response):
 
         url = response.request.url # this saves the url
@@ -72,14 +86,10 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
 
         for person in all_people:
             name, title = person.css('span::text').getall()
-            item = Board()
-            item['company'] = 'AstraZeneca'
-            item['name'] = name
             # strip necessary to remove white space and new line chars
-            item['title'] = title[1:-1].strip(' ').strip('\n')
-            item['year'] = self.find_year(url)
-            print(name, title)
-            yield item
+            title = title[1:-1].strip(' ').strip('\n')
+            year = self.find_year(url)
+            yield self.create_board(name,title,year)
 
     def parse_prior_2016(self, response):
         url = response.request.url
@@ -87,13 +97,8 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
         for person in all_people:
             name = person.css('dt::text').getall()
             title = person.css('dd.description::text').getall()[0]
-
-            item = Board()
-            item['company'] = 'AstraZeneca'
-            item['name'] = name
-            item['title'] = title
-            item['year'] = self.find_year(url)
-            yield item
+            year = self.find_year(url)
+            yield self.create_board(name,title,year)
 
     def parse_intermediate(self, response):
         url = response.request.url
@@ -102,15 +107,10 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
         for p in paragraphs:
             name = p.css('font::text') if not p.css('strong::text').get() else p.css('strong::text')
             if name.get():
-                item = Board()
-                item['name'] = name.get()
-                item['company'] = 'AstraZeneca'
-
+                name = name.get()
                 title = p
-                print(title)
-                item['title'] = title
-                item['year'] = self.find_year(url)
-                yield item
+            year = self.find_year(url)
+            yield self.create_board(name,title,year)
 
     def parse_prior_2002(self, response):
         url = response.request.url
@@ -120,27 +120,21 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
             if i != 0:
                 if i % 2 == 1:
                     item = Board()
-                    item['company'] = 'AstraZeneca'
                     name = cell.css('b::text').get()
                     try:
                         name = [item.strip(' ') for item in name.split('\n')]
                         name = ' '.join(name)
-                        item['name'] = name
                     except Exception as e:
-                        print(e)
-                        item['name'] = 0
+                        name = 0
                 else:
                     title = cell.css('font::text').get()
                     try:
                         title = [item.strip(' ') for item in title.split('\n')]
                         title = ' '.join(title)
-                        item['title'] = title
                     except Exception as e:
-                        print(e)
-                        item['title'] = 0
-                    item['year'] = self.find_year(url)
-
-                    yield item
+                        title = 0
+                    year = self.find_year(url)
+                    yield self.create_board(name,title,year)
 """
 Useful links:
 https://www.youtube.com/watch?v=ALizgnSFTwQ
