@@ -18,24 +18,22 @@ import scrapy
 from ..items import Board
 import datetime
 
-class HSBC_board(scrapy.Spider):
-    name = 'HSBC_board'
+class GSK_board(scrapy.Spider):
+    name = 'GSK_board'
 
     # define URLs
-    allowed_domains = ['www.hsbc.com/']
+    allowed_domains = ['www.gsk.com/']
 
     # define URLs and parsing method
     def start_requests(self):
         # current site
-        yield scrapy.Request('http://hsbc.com/who-we-are/leadership/',self.parse_current)
+        yield scrapy.Request('https://www.gsk.com/en-gb/about-us/corporate-executive-team/',self.parse_current)
 
         # archived sites
-        yield scrapy.Request('http://web.archive.org/web/20181109052314/https://www.hsbc.com/about-hsbc/leadership', self.parse_2015_2018)
-        yield scrapy.Request('http://web.archive.org/web/20171109052314/https://www.hsbc.com/about-hsbc/leadership', self.parse_2015_2018)
-        yield scrapy.Request('http://web.archive.org/web/20161109052314/https://www.hsbc.com/about-hsbc/leadership', self.parse_2015_2018)
-        yield scrapy.Request('http://web.archive.org/web/20151109052314/https://www.hsbc.com/about-hsbc/leadership', self.parse_2015_2018)
-        yield scrapy.Request('https://web.archive.org/web/20141202033024/http://www.hsbc.com/about-hsbc/leadership', self.parse_2013_2014)
-        yield scrapy.Request('https://web.archive.org/web/20131121204902/http://www.hsbc.com/about-hsbc/leadership', self.parse_2013_2014)
+        yield scrapy.Request('https://web.archive.org/web/20161120073949/http://www.gsk.com/en-gb/about-us/corporate-executive-team',self.parse_2016_current)
+        yield scrapy.Request('https://web.archive.org/web/20140703075605/http://www.gsk.com/about-us/corporate-executive-team.html',self.parse_2014_2016)
+
+
 
     def create_board(self, name, title, year):
 
@@ -43,28 +41,24 @@ class HSBC_board(scrapy.Spider):
         item = Board()
 
         # asign fields
-        item['company'] = 'HSBC'
+        item['company'] = 'GSK'
         item['title'] = title
         item['year'] = year
         item['name'] = name
-
-        # COMMENT by YOUSEF:
-        # funnily enough, my scraper gave me an error when this was set to yield item,
-        # changing it to return fixed the problem?
+        
         return item
 
     # parse the current HSBC board
     def parse_current(self, response):
         # define selector that contains all items
-        all_people = response.css("li.directors-index__item")
-
+        all_people = response.css("li.grid-listing__item")
+        print(all_people)
         # iterate through items
         for person in all_people:
             # manually parse name
-            name = person.css("a>div>div>h3.contact-large-image-teaser__header::text").get()
-            print(name)
+            name = person.css("a>div>h2::text").get()
             # manually parse title
-            title = person.css("a>div>div>p>span::text").get()
+            title = person.css("a>div>p::text").get()
 
             now = datetime.datetime.now()
             year = now.year
@@ -73,16 +67,16 @@ class HSBC_board(scrapy.Spider):
             yield self.create_board(name,title,year)
 
     # parse the board from 2015-2018
-    def parse_2015_2018(self, response):
+    def parse_2016_current(self, response):
         # define selector that contains all items
-        all_people = response.css("li.profile-col1")
+        all_people = response.css("article.listing-item.with-image")
 
         # iterate through items
         for person in all_people:
             # manually parse name
-            name = person.css("div>h3>a.title-profile.text-red::text").get()
+            name = person.css("h3>a::text").get()
             # manually parse title
-            title = person.css("div>p.profile-info::text").get()
+            title = person.css("p::text").get()
 
             # find the year from the crawled URL
             url = response.request.url
@@ -93,16 +87,17 @@ class HSBC_board(scrapy.Spider):
             yield self.create_board(name,title,year)
 
     # parse the board from 2013-2014
-    def parse_2013_2014(self, response):
+    def parse_2014_2016(self, response):
         # define selector that contains all items
-        all_people = response.css("div.profile-col1")
+        all_people = response.css("a.titleLink.textDecorateNone")
 
         # iterate through items
         for person in all_people:
             # manually parse name
-            name = person.css("div>a.title-profile.text-red::text").get()
+            name = person.css("h2>span.textDecorateNone::text").getall()[0]
+            print(name)
             # manually parse title
-            title = person.css("div>p.profile-info.profile-desg.bold::text").get()
+            title = person.css("h2>span.textDecorateNone::text").getall()[1]
 
             # find the year from the crawled URL
             url = response.request.url
