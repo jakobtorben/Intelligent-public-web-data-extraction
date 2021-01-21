@@ -1,9 +1,9 @@
-# command to run is: scrapy crawl HSBC_board -o HSBC_board.csv
+# command to run is: scrapy crawl GSK_board -o GSK_board.csv
 
 
 """
 
-Manual parsing of HSBC.com & archived versions of HSBC.com from web.archive.org
+Manual parsing of gsk.com & archived versions of gsk.com from web.archive.org
 
 Issues:
 
