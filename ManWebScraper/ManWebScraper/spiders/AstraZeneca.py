@@ -1,5 +1,5 @@
 import scrapy
-from ManWebScraper.items import Board
+from ..items import Board
 import re
 from scrapy.spiders import XMLFeedSpider
 from scrapy.http import HtmlResponse
@@ -31,19 +31,21 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
         This method seems to be native to scrapy --> it allows you to set up a start sequence!
         If unspecified, I believe scrapy will look for 'parse' method
         """
-        #yield scrapy.Request('https://www.astrazeneca.com/sitemap.xml', self.parse_XML)
+        yield scrapy.Request('https://www.astrazeneca.com/sitemap.xml', self.parse_XML)
 
 
-        #yield scrapy.Request('https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
-        #yield scrapy.Request('https://web.archive.org/web/20160304110534/https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
+        yield scrapy.Request('https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
+        yield scrapy.Request('https://web.archive.org/web/20160304110534/https://www.astrazeneca.com/our-company/leadership.html',self.parse_current)
 
-        #yield scrapy.Request('https://web.archive.org/web/20151015023532/http://www.astrazeneca.com/About-Us/our-board-of-directors', self.parse_prior_2016)
-        #yield scrapy.Request('https://web.archive.org/web/20151015023301/http://www.astrazeneca.com/About-Us/astrazeneca-senior-executive-team', self.parse_prior_2016)
+        yield scrapy.Request('https://web.archive.org/web/20151015023532/http://www.astrazeneca.com/About-Us/our-board-of-directors', self.parse_prior_2016)
+        yield scrapy.Request('https://web.archive.org/web/20151015023301/http://www.astrazeneca.com/About-Us/astrazeneca-senior-executive-team', self.parse_prior_2016)
 
-        #yield scrapy.Request('https://web.archive.org/web/20120915030408/http://www.astrazeneca.com/About-Us/Board-and-management', self.parse_prior_2016)
+        yield scrapy.Request('https://web.archive.org/web/20120915030408/http://www.astrazeneca.com/About-Us/Board-and-management', self.parse_prior_2016)
 
-        yield scrapy.Request('https://web.archive.org/web/20051028020248/http://www.astrazeneca.com/article/510901.aspx', self.parse_intermediate)
-        #yield scrapy.Request('https://web.archive.org/web/20011212171535/http://www.astrazeneca.com/AboutUs/Board_and_management.htm', self.parse_prior_2002)
+        yield scrapy.Request('https://web.archive.org/web/20011212171535/http://www.astrazeneca.com/AboutUs/Board_and_management.htm', self.parse_prior_2002)
+
+        # currently broken
+        #yield scrapy.Request('https://web.archive.org/web/20051028020248/http://www.astrazeneca.com/article/510901.aspx', self.parse_intermediate)
 
 
     def parse_XML(self, response):
@@ -76,7 +78,7 @@ class AstraZeneca_board(scrapy.Spider): # online solutions suggest that reading 
         item['year'] = year
         item['name'] = name
 
-        yield item
+        return item
 
     def parse_current(self, response):
 

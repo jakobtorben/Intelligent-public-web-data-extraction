@@ -15,7 +15,7 @@ Issues:
 
 # imports
 import scrapy
-from items import Board
+from ..items import Board
 import datetime
 
 class HSBC_board(scrapy.Spider):
@@ -48,6 +48,9 @@ class HSBC_board(scrapy.Spider):
         item['year'] = year
         item['name'] = name
 
+        # COMMENT by YOUSEF:
+        # funnily enough, my scraper gave me an error when this was set to yield item,
+        # changing it to return fixed the problem?
         yield item
 
     # parse the current HSBC board
