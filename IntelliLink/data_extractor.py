@@ -1,7 +1,7 @@
 import eikon as ek
 import pandas as pd
 
-ek.set_app_key('02251fe154c94deb80d9d7f737ed04133566fd2c')
+ek.set_app_key('02251fexxxxxxxxxxxxxxxxxxxxxxxxxxxxxfd2c')
 
 
 constituents, err = ek.get_data(".FTSE", "TR.IndexConstituentRIC")
