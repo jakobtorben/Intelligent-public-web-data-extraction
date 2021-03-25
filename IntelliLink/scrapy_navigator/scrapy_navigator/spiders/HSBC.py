@@ -22,18 +22,27 @@ class HsbcSpider(scrapy.Spider):
 
 
     """
-    Recursively follow links on each page (untested):
+    Find all the links on a page, choose one at random, follow that link and repeat.
+    This function is recursive and untested.
+
 
     def parse_next_page(self, response):
+        # get all the links
         for sel in response.xpath('//ul/li'):
             item = ScrapyNavigatorItem()
+            # save the link
             item['link'] = sel.xpath('a/@href').extract()
             yield item
 
+        # list of all possible next pages
         next_page = response.css("a::attr('href')")
+
+        # if there is a valid next page
         if next_page:
+            # choose new page at random
             selection = random.randint(0,len(next_page))
             url = response.urljoin(next_page[selection].extract())
+            # use this function to parse it recursively
             yield scrapy.Request(url, self.parse_next_page)
 
     """
