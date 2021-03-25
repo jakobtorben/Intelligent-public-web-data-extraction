@@ -48,7 +48,7 @@ class GSK_board(scrapy.Spider):
         
         return item
 
-    # parse the current HSBC board
+    # parse the current GSK board
     def parse_current(self, response):
         # define selector that contains all items
         all_people = response.css("li.grid-listing__item")

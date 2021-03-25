@@ -439,7 +439,7 @@ class TreeDiff(object):
             return n.children
 
         import zss
-        from editdistance import distance as strdist
+        #from editdistance import distance as strdist
         res = zss.distance(a.func_node, b.func_node, _get_children,
                            lambda node: _str_dist('', _get_label(node)),  # insert cost
                            lambda node: _str_dist(_get_label(node), ''),  # remove cost
@@ -575,11 +575,11 @@ def parse_current(self, response):
         yield self.create_board(name, title, year)
         """
 
-    print(detect([HSBC_current, Unilever_current], diff_method=UnifiedDiff, 
+    # print(detect([HSBC_current, Unilever_current], diff_method=UnifiedDiff, 
+    #                             keep_prints=False, module_level=False)[0][1][0].plagiarism_percent)
+    print(detect([HSBC_current, Unilever_current], diff_method=TreeDiff(), 
                                 keep_prints=False, module_level=False)[0][1][0].plagiarism_percent)
-    print(detect([HSBC_current, Unilever_current], diff_method=TreeDiff, 
-                                keep_prints=False, module_level=False)[0][1][0].plagiarism_percent)
-    print(detect([Unilever_current, HSBC_current], diff_method=UnifiedDiff, 
-                                keep_prints=False, module_level=False)[0][1][0].plagiarism_percent)
-    print(detect([Unilever_current, HSBC_current], diff_method=TreeDiff, 
+    # print(detect([Unilever_current, HSBC_current], diff_method=UnifiedDiff, 
+    #                             keep_prints=False, module_level=False)[0][1][0].plagiarism_percent)
+    print(detect([Unilever_current, HSBC_current], diff_method=TreeDiff(), 
                                 keep_prints=False, module_level=False)[0][1][0].plagiarism_percent)
