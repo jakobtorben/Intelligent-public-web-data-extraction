@@ -8,3 +8,7 @@ import scrapy
 
 class ScrapyNavigatorItem(scrapy.Item):
     link = scrapy.Field()
+    count = scrapy.Field()
+    names = scrapy.Field()
+    meta = scrapy.Field()
+    title = scrapy.Field()
