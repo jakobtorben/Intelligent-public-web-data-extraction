@@ -10,3 +10,4 @@ class ScrapyNavigatorItem(scrapy.Item):
     link = scrapy.Field()
     relevance = scrapy.Field()
     action_vec = scrapy.Field()
+    state_vec = scrapy.Field()
