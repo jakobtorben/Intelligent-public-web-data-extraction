@@ -1,5 +1,12 @@
 import scrapy
 import random
+import numpy as np
+import re
+import lxml.etree
+import lxml.html
+import nltk
+from nltk.tokenize import word_tokenize
+
 from ..items import ScrapyNavigatorItem
 
 class HsbcSpider(scrapy.Spider):
@@ -12,9 +19,13 @@ class HsbcSpider(scrapy.Spider):
         self.ignore_status = ['403', '404']
         self.max_requests = 1000
         self.count = 0
+        self.action_keywords = ["leadership", "board", "directors", "corporate", "about", "our", "executive", "team", "company"]
+        self.relevance_keyword = ["title", "director", "board", "executive", "business", "chief", "group", "global", "officer",
+                                  "commmittee", "member", "governance", "experience"]
 
     def start_requests(self):
         yield scrapy.Request('https://www.hsbc.com/who-we-are', callback = self.parse)
+       
 
     # function that finds links on page and clicks them
     def parse(self, response):
@@ -43,7 +54,8 @@ class HsbcSpider(scrapy.Spider):
     def parse_attr(self, response):
         item = ScrapyNavigatorItem()
         item['link'] = response.url
-        item['relevance'] = self.relevance(response.url)
+        item['relevance'] = self.relevance(response)
+        item['action_vec'] = self.action_vector(response.url)
         self.count += 1
         return item
 
@@ -63,46 +75,32 @@ class HsbcSpider(scrapy.Spider):
         return new_urls
 
 
-    def relevance(self, link):
-        return 1
+    def relevance(self, response):
+        root = lxml.html.fromstring(response.body)
+        lxml.etree.strip_elements(root, lxml.etree.Comment, "script", "head")
 
-    """
-    
-    # function that deals with pages returned from above        
-    def parse_dir_contents(self, response):
-        item = ScrapyNavigatorItem()
-        for sel in response.xpath('//ul/li'):
-            item['link'] = sel.xpath('a/@href').extract()
-            print("link ", item['link'])
-            item['relevance'] = self.relevance(item['link'])
-            yield item
-    """
-    
-
-
-
-    """
-    Find all the links on a page, choose one at random, follow that link and repeat.
-    This function is recursive and untested.
+        # complete text
+        text = lxml.html.tostring(root, method="text", encoding='unicode')
+        text = text.lower()
+        text_tokens = word_tokenize(text)
+        length = len(text_tokens)
+        if length == 0:
+            return 0
+        rel = 0
+        for kword in self.relevance_keyword:
+            rel += text_tokens.count(kword)
+        rel /= length
+        return rel
 
 
-    def parse_next_page(self, response):
-        # get all the links
-        for sel in response.xpath('//ul/li'):
-            item = ScrapyNavigatorItem()
-            # save the link
-            item['link'] = sel.xpath('a/@href').extract()
-            yield item
+    def action_vector(self, suburl):
+        vec = np.zeros(2)
 
-        # list of all possible next pages
-        next_page = response.css("a::attr('href')")
+        linkwords = re.findall(r"[\w']+", suburl)
+        for word in linkwords:
+            if word in self.action_keywords:
+                vec[0] += 1
+        vec[0] /= len(linkwords)
 
-        # if there is a valid next page
-        if next_page:
-            # choose new page at random
-            selection = random.randint(0,len(next_page))
-            url = response.urljoin(next_page[selection].extract())
-            # use this function to parse it recursively
-            yield scrapy.Request(url, self.parse_next_page)
-
-    """
+        # Ideally add method to search text around link and add metric to vec[1]
+        return vec
