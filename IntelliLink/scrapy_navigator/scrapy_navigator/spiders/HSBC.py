@@ -56,6 +56,8 @@ class HsbcSpider(scrapy.Spider):
         item['link'] = response.url
         item['relevance'] = self.relevance(response)
         item['action_vec'] = self.action_vector(response.url)
+        state_vec = np.array([item['relevance'], item['action_vec'][0] ])
+        item['state_vec'] = state_vec
         self.count += 1
         return item
 
