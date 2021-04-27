@@ -61,7 +61,7 @@ class RlcrawlerSpider(scrapy.Spider):
         new_url = self.page_agent(response, pageurl)
         #for new_url in new_urls:
         if (self.count < self.max_requests):
-            self.coutn += 1
+            self.count += 1
             yield scrapy.Request(new_url, callback = self.parse)
 
 
@@ -92,10 +92,7 @@ class RlcrawlerSpider(scrapy.Spider):
             # ind 1 = relevance of url + 0
             # did you mean to create a new vector of length 4?
             
-            # Create a transition
-            transition = (self.state_vector, self.action_vector, reward, next_state)
-            # append transition to buffer
-            self.buffer.append_to_buffer(transition)
+
             
             Q = self.spiderNet.network.forward(torch.tensor(state_action_vector).unsqueeze(0))
             
@@ -114,6 +111,16 @@ class RlcrawlerSpider(scrapy.Spider):
                 valid = False
 
         new_url = pageurl[selection] 
+        # Create a transition
+        next_response = scrapy.http.Request(new_url)
+        next_reward = self.relevance(next_response)
+        next_actionVector = self.action_vector(next_response.url)
+        next_stateVector = np.array(next_reward, next_actionVector[0])
+        transition = (self.state_vector, self.action_vector, reward, next_stateVector)
+
+        # append transition to buffer
+        self.buffer.append_to_buffer(transition)
+
         #new_urls.append(pageurl[selection])
         return new_url
 
