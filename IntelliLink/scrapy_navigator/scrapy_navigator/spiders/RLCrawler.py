@@ -120,6 +120,10 @@ class RlcrawlerSpider(scrapy.Spider):
 
         # append transition to buffer
         self.buffer.append_to_buffer(transition)
+        
+        if len(self.buffer.buffer) > self.buffer.buffer_len:
+            minibatch = self.buffer.sample_minibatch()
+            self.spiderNet.train(minibatch)
 
         #new_urls.append(pageurl[selection])
         return new_url

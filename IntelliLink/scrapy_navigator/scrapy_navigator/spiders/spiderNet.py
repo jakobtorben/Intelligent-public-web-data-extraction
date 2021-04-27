@@ -48,15 +48,17 @@ class spiderNet:
     # Q estimate in real implementation
     def train(self, minibatch, Q_true):
         self.optimiser.zero_grad()
-        loss = self._calculate_loss(minibatch, Q_true)
+        loss = self._calculate_loss(minibatch)
         loss.backward()
         self.optimiser.step()
         return loss.item()
     
     # calculate loss on a minibatch, again Q_true only there for testing
-    def _calculate_loss(self, minibatch, Q_true):
+    def _calculate_loss(self, minibatch):
         
         Q_pred = self.network.forward(minibatch)
+        
+        Q_target = self.network.forward(next_state)
         
         # calculate MSE loss
         loss = torch.nn.MSELoss()(Q_pred,Q_true)
