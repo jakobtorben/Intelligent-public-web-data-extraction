@@ -34,7 +34,7 @@ class RlcrawlerSpider(scrapy.Spider):
         self.epsilon_decay = 0.9
         self.stateVector = None
         self.actionVector = None
-        self.buffer = ReplayBuffer()
+        self.buffer = spiderNet.ReplayBuffer()
 
     def start_requests(self):
         yield scrapy.Request('https://www.hsbc.com/who-we-are', callback = self.parse)
@@ -56,12 +56,13 @@ class RlcrawlerSpider(scrapy.Spider):
             if scrapy.http.Response(url).status in self.ignore_status:
                 continue
             pageurl.append(url)
-            yield scrapy.Request(url, callback = self.parse_attr)
+            #yield scrapy.Request(url, callback = self.parse_attr)
 
-        new_urls = self.page_agent(pageurl, 2)
-        for new_url in new_urls:
-            if (self.count < self.max_requests):
-                yield scrapy.Request(new_url, callback = self.parse)
+        new_url = self.page_agent(response, pageurl)
+        #for new_url in new_urls:
+        if (self.count < self.max_requests):
+            self.coutn += 1
+            yield scrapy.Request(new_url, callback = self.parse)
 
 
     def parse_attr(self, response):
@@ -77,40 +78,44 @@ class RlcrawlerSpider(scrapy.Spider):
         return item
 
     
-    def page_agent(self, pageurl, size):
-        new_urls = []
-        for url in range(size):
-            valid = False
-            while (valid == False):
+    def page_agent(self, response, pageurl):
+
+        valid = False
+        while (valid == False):
+            
+            reward = self.relevance(response)
+            self.actionVector = self.action_vector(response.url)
+            self.stateVector = np.array(reward, self.actionVector[0])
+            state_action_vector = self.state_vector + self.action_vector  
+            # is this what we want? this will make state action vector equal to
+            # ind 0 = relevance + relevance of url
+            # ind 1 = relevance of url + 0
+            # did you mean to create a new vector of length 4?
+            
+            # Create a transition
+            transition = (self.state_vector, self.action_vector, reward, next_state)
+            # append transition to buffer
+            self.buffer.append_to_buffer(transition)
+            
+            Q = self.spiderNet.network.forward(torch.tensor(state_action_vector).unsqueeze(0))
+            
+            greedy_action = np.argmax(Q[0].detach().numpy())
+            
+            # modify selection here
+            # epsilon greedy behaviour
+            if random.uniform(0,1) < self.epsilon:
+                selection = random.randint(0, len(pageurl)-1)
+            else:
+                selection = greedy_action
                 
-                reward = self.relevance(response)
-                self.actionVector = self.action_vector(response.url)
-                self.stateVector = np.array(self.relevance(response), self.action_vector(response.url))
-                state_action_vector = self.state_vector + self.action_vector
-                
-                # Create a transition
-                transition = (self.state_vector, self.action_vector, reward, next_state)
-                # append transition to buffer
-                self.buffer.append_to_buffer(transition)
-                
-                Q = self.spiderNet.network.forward(torch.tensor(state_action_vector).unsqueeze(0))
-                
-                greedy_action = np.argmax(Q[0].detach().numpy())
-                
-                # modify selection here
-                # epsilon greedy behaviour
-                if random.uniform(0,1) < self.epsilon:
-                    selection = random.randint(0, len(pageurl)-1)
-                else:
-                    selection = greedy_action
-                    
-                if pageurl[selection] not in new_urls:
-                    valid = True
-                elif scrapy.response(pageurl[selection]).status in self.ignore_status:
-                    valid = False
-                    
-            new_urls.append(pageurl[selection])
-        return new_urls
+            #if pageurl[selection] not in new_urls:
+            #    valid = True
+            if scrapy.response(pageurl[selection]).status in self.ignore_status:
+                valid = False
+
+        new_url = pageurl[selection] 
+        #new_urls.append(pageurl[selection])
+        return new_url
 
 
     def relevance(self, response):
