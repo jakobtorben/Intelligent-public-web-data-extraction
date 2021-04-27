@@ -56,11 +56,24 @@ class spiderNet:
     # calculate loss on a minibatch, again Q_true only there for testing
     def _calculate_loss(self, minibatch):
         
-        Q_pred = self.network.forward(minibatch)
+        # unpack states into tensor
+        SA_minibatch_tensor = torch.tensor([minibatch[i][0] for i in range(len(minibatch))])
+        # unpack successor state into tensor
+        next_SA_minibatch_tensor = torch.tensor([minibatch[i][2] for i in range(len(minibatch))])
         
-        Q_target = self.network.forward(next_state)
+        # unpack rewards into tensor
+        reward_tensor = torch.tensor([minibatch[i][1] for i in range(len(minibatch))])
+        
+        # Q values for current state
+        current_q = self.q_network.forward(SA_minibatch_tensor)
+        
+        # get Q value of best action in next state
+        next_q = self.target_network.forward(next_SA_minibatch_tensor)
+        
+        # Q target defined as reward + gamma*best Q in next state
+        target_q = reward_tensor + (self.gamma * next_q)
         
         # calculate MSE loss
-        loss = torch.nn.MSELoss()(Q_pred,Q_true)
+        loss = torch.nn.MSELoss()(current_q,target_q)
         
         return loss
