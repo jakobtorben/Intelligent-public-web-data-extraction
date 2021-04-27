@@ -6,7 +6,7 @@ import lxml.etree
 import lxml.html
 import nltk
 from nltk.tokenize import word_tokenize
-from spiderNet import *
+from .spiderNet import *
 import torch
 
 from ..items import ScrapyNavigatorItem
@@ -34,7 +34,7 @@ class RlcrawlerSpider(scrapy.Spider):
         self.epsilon_decay = 0.9
         self.stateVector = None
         self.actionVector = None
-        self.buffer = spiderNet.ReplayBuffer()
+        self.buffer = ReplayBuffer()
 
     def start_requests(self):
         yield scrapy.Request('https://www.hsbc.com/who-we-are', callback = self.parse)
@@ -86,15 +86,10 @@ class RlcrawlerSpider(scrapy.Spider):
             reward = self.relevance(response)
             self.actionVector = self.action_vector(response.url)
             self.stateVector = np.array(reward, self.actionVector[0])
-            state_action_vector = self.state_vector + self.action_vector  
-            # is this what we want? this will make state action vector equal to
-            # ind 0 = relevance + relevance of url
-            # ind 1 = relevance of url + 0
-            # did you mean to create a new vector of length 4?
+            state_action_vector = np.concatenate((self.actionVector, self.stateVector), axis=None)
+        
             
-
-            
-            Q = self.spiderNet.network.forward(torch.tensor(state_action_vector).unsqueeze(0))
+            Q = self.spiderNet.network.forward(torch.tensor(state_action_vector).float().unsqueeze(0))
             
             greedy_action = np.argmax(Q[0].detach().numpy())
             
@@ -107,20 +102,26 @@ class RlcrawlerSpider(scrapy.Spider):
                 
             #if pageurl[selection] not in new_urls:
             #    valid = True
-            if scrapy.response(pageurl[selection]).status in self.ignore_status:
+            print("selection", pageurl[selection])
+            next_response = scrapy.http.HtmlResponse(pageurl[selection])
+            if next_response.status in self.ignore_status:
                 valid = False
 
+
         new_url = pageurl[selection] 
+        print("newurl", new_url)
         # Create a transition
         next_response = scrapy.http.Request(new_url)
         next_reward = self.relevance(next_response)
         next_actionVector = self.action_vector(next_response.url)
         next_stateVector = np.array(next_reward, next_actionVector[0])
-        transition = (self.state_vector, self.action_vector, reward, next_stateVector)
+        next_stateActionVector = np.concatenate((next_stateVector, next_actionVector), axis=None)
+
+        transition = (state_action_vector, reward, next_stateActionVector)
 
         # append transition to buffer
         self.buffer.append_to_buffer(transition)
-        
+
         if len(self.buffer.buffer) > self.buffer.buffer_len:
             minibatch = self.buffer.sample_minibatch()
             self.spiderNet.train(minibatch)
