@@ -2,14 +2,16 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 import torch.nn as nn
+import random
+import collections
 
 # replay buffer class stores transition information (s,a,r,s') dynamically
 # not used in testing
 class ReplayBuffer:
     
     def __init__(self):
-        self.buffer_len = 32
-        self.buffer = collections.deque(maxlen=5000)
+        self.buffer_len = 4
+        self.buffer = collections.deque(maxlen=500)
         
     def append_to_buffer(self,transition):
         self.buffer.append(transition)
