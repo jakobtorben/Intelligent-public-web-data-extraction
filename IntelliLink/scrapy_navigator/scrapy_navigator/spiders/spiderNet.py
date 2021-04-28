@@ -41,14 +41,18 @@ class spiderNet:
     
     def __init__(self,input_dimension):
         self.network = sampleNetwork(input_dimension, output_dimension=1)
+        self.q_network = sampleNetwork(input_dimension, output_dimension=1)
+        self.target_network = sampleNetwork(input_dimension, output_dimension=1)
         self.optimiser = optim.Adam(self.network.parameters(), lr=0.01)
+        self.gamma = 0.9
     
     # training on a minibatch
     # 'Q_true' is only there for testing, would be replaced with a 
     # Q estimate in real implementation
-    def train(self, minibatch, Q_true):
+    def train(self, minibatch):
         self.optimiser.zero_grad()
         loss = self._calculate_loss(minibatch)
+        print("LOSS", loss)
         loss.backward()
         self.optimiser.step()
         return loss.item()
