@@ -8,12 +8,13 @@ import nltk
 from nltk.tokenize import word_tokenize
 from .spiderNet import *
 import torch
+import requests
 
 from ..items import ScrapyNavigatorItem
 
 class RlcrawlerSpider(scrapy.Spider):
     name = 'RLCrawler'
-    allowed_domains = ['hsbc.com']
+    #allowed_domains = ['hsbc.com']
     start_urls = ['https://www.hsbc.com/who-we-are']
     
     def __init__(self):
@@ -37,7 +38,7 @@ class RlcrawlerSpider(scrapy.Spider):
         self.buffer = ReplayBuffer()
 
     def start_requests(self):
-        yield scrapy.Request('https://www.hsbc.com/who-we-are', callback = self.parse)
+        yield scrapy.Request('https://www.hsbc.com/who-we-are', callback = self.parse, dont_filter=True)
        
 
     # function that finds links on page and clicks them
@@ -49,9 +50,25 @@ class RlcrawlerSpider(scrapy.Spider):
                 continue
             if '#' in url:
                 continue
-            if "javascript:void(0)" in url:
+            if 'pdf' in url:
+                continue
+            if "javascript" in url:
                 continue
             if "mailto" in url:
+                continue
+            if "youtube" in url:
+                continue
+            if "linkedin" in url:
+                continue
+            if "facebook" in url:
+                continue
+            if "twitter" in url:
+                continue
+            if "messanger" in url:
+                continue
+            if "whatsapp" in url:
+                continue
+            if "rss" in url:
                 continue
             if scrapy.http.Response(url).status in self.ignore_status:
                 continue
@@ -62,7 +79,7 @@ class RlcrawlerSpider(scrapy.Spider):
         #for new_url in new_urls:
         if (self.count < self.max_requests):
             self.count += 1
-            yield scrapy.Request(new_url, callback = self.parse)
+            yield scrapy.Request(new_url, callback = self.parse, dont_filter=True)
 
 
     def parse_attr(self, response):
@@ -77,7 +94,6 @@ class RlcrawlerSpider(scrapy.Spider):
         self.count += 1
         return item
 
-    
     def page_agent(self, response, pageurl):
 
         valid = False
@@ -103,19 +119,25 @@ class RlcrawlerSpider(scrapy.Spider):
             #if pageurl[selection] not in new_urls:
             #    valid = True
             print("selection", pageurl[selection])
-            next_response = scrapy.http.HtmlResponse(pageurl[selection])
+            body = requests.get(pageurl[selection]).content
+            next_response = scrapy.http.Response(pageurl[selection], body=body)#requests.get(pageurl[selection])
+            print("response", next_response, next_response.status)
             if next_response.status in self.ignore_status:
                 valid = False
+            else:
+                valid = True
 
 
         new_url = pageurl[selection] 
         print("newurl", new_url)
         # Create a transition
-        next_response = scrapy.http.Request(new_url)
         next_reward = self.relevance(next_response)
         next_actionVector = self.action_vector(next_response.url)
         next_stateVector = np.array(next_reward, next_actionVector[0])
         next_stateActionVector = np.concatenate((next_stateVector, next_actionVector), axis=None)
+
+        state_action_vector = state_action_vector.astype('float32')
+        next_stateActionVector = next_stateActionVector.astype('float32')
 
         transition = (state_action_vector, reward, next_stateActionVector)
 
